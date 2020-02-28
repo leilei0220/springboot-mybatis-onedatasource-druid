@@ -38,11 +38,12 @@ class DruidConfig {
     public ServletRegistrationBean statViewServlet(){
         ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
         Map<String,String> initParams = new HashMap<>(4);
-
+        //配置druid页面监控的账户密码
         initParams.put("loginUsername","leilei");
         initParams.put("loginPassword","123456");
         //默认就是允许所有访问
         initParams.put("allow","");
+        //黑名单  注意 黑名单优先于 allow白名单加载 两个名单中不可重复
         initParams.put("deny","192.168.10.21");
 
         bean.setInitParameters(initParams);
